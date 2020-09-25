@@ -20,7 +20,6 @@ const waiters = {
     },
     mutations:{
         SETLIST(state,data){
-            
             state.list = data
         },
         SETwaiter_info(state,data){
@@ -53,21 +52,25 @@ const waiters = {
             
         },
         AddHandler(context){
-            post('/waiter/saveOrUpdate',context.state.waiter_info).then((resp)=>{
-                ElementUI.Notification({
-                    title: '成功',
-                    message: '操作成功',
-                    type: 'success', //成功的样式
-                    duration: 2000//显示两秒
-                });
-                context.dispatch('fetchData')
-            }).catch(()=>{
-                ElementUI.Notification.error({
-                    title:'失败',
-                    message:'操作失败',
-                    duration: 2000//显示两秒
-                })
-            })
+            
+                    post('/waiter/saveOrUpdate',context.state.waiter_info).then((resp)=>{
+                                    ElementUI.Notification({
+                                        title: '成功',
+                                        message: '操作成功',
+                                        type: 'success', //成功的样式
+                                        duration: 2000//显示两秒
+                                    });
+                                    context.dispatch('fetchData')
+                                    context.dispatch('dialogClose')
+                                }).catch(()=>{
+                                    ElementUI.Notification.error({
+                                        title:'失败',
+                                        message:'操作失败',
+                                        duration: 2000//显示两秒
+                                    })
+                                })
+                                
+            
 
         },
         dialogClose(context){    
@@ -92,6 +95,7 @@ const waiters = {
             })
         },
         updateHandler(context,row){
+            
             context.state.title="修改员工信息"
             context.state.dialogFormVisible = true;   
             context.commit('SETwaiter_info',row)
@@ -117,7 +121,7 @@ const waiters = {
             }).catch((err)=>{
                 console.log(err)
             })
-
+ 
         },
     }
     

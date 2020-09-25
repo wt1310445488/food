@@ -36,7 +36,7 @@
       <template v-slot = "scope">
         <el-button
           size="mini"
-          @click="updateHandler(scope.row)"
+          @click="UpdateHandler(scope.row)"
           >编辑</el-button>
         <el-button
           size="mini"
@@ -58,15 +58,28 @@
 <el-dialog :title="title" 
  :visible="dialogFormVisible"
  @close="dialogClose()"
+ width="40%"
 >
-    <p>用户名: <el-input v-model="waiter_info.username"></el-input>  
+
+  <el-form  :model="waiter_info" label-width="120px" :rules="rules" ref="waiterForm" >
+  <el-form-item label="用户名:" prop="username" > 
+    <el-input v-model="waiter_info.username" style="width:70%" ></el-input>
+  </el-form-item>
+  <el-form-item label="手机号:" prop="telephone">
+    <el-input v-model.number= "waiter_info.telephone" style="width:70%"></el-input>
+  </el-form-item>
+  <el-form-item label="身份证号:" prop="idCard">
+    <el-input v-model="waiter_info.idCard" style="width:70%"></el-input>
+  </el-form-item>
+  </el-form>
+    <!-- <p>用户名: <el-input v-model="waiter_info.username"></el-input>  
     <p>手机号: <el-input v-model="waiter_info.telephone" ></el-input>
-    <p>身份证号: <el-input v-model="waiter_info.idCard" ></el-input>
- 
+    <p>身份证号: <el-input v-model="waiter_info.idCard" ></el-input> -->
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogClose()">取 消</el-button>
-    <el-button type="primary" @click="AddHandler(),dialogClose()">确 定</el-button>
+    <el-button type="primary" @click="submitHandler('waiterForm')">确 定</el-button>
   </div>
+  
 </el-dialog>
 <!-- 分页 -->
 <!-- <pagination
@@ -83,7 +96,25 @@ export default {
   components: { Pagination },
   data(){
     return{
-    
+    rules:{
+      username:[
+        // required字段不能为空,trigger:trigger类型为blur的功能是文本框失去焦点才会触发
+        // trigger类型为change的功能是文本框在输入内容时触发
+        // trigger类型也可以同时使用blur和change，功能结合上面两个的功能
+        {required:true,message:"请输入姓名",trigger:"blur"},
+        {min:2,max:6,message:"姓名的字数应该为2~6位",trigger:"blur"}
+      ],
+      telephone:[
+        {required:true,message:"请输入手机号",trigger:"blur"},
+        {type: 'number', message: '必须为数字值',trigger:"change"},
+        
+      ],
+      idCard:[
+        {required:true,message:"请输入身份证号",trigger:"blur"},
+        {min:18,max:18,message:"请输入正确的身份证号",trigger:"blur"},
+        
+      ],
+    },
     }
   },  
   //在仓库中的数据,获取时,必须卸载computed中
@@ -93,10 +124,28 @@ export default {
   created(){
     this.fetchData()
   },
-  methods:{
-    
-    ...mapActions('waiters',['fetchData','addHandler','dialogClose','AddHandler','batchDelete','deleteById','updateHandler','handleSelectionChange'])
+  methods:{  
+    submitHandler(a){
+      //在提交之前执行校验
+      console.log(a)
+      console.log(this.$refs[a])
+      this.$refs[a].validate((valid)=>{
+
+        console.log(valid)
+        if(valid){
+          this.AddHandler()
+        }else{
+          return false
+        }
+      })  
+   },
+   UpdateHandler(row){
+     this.$refs.waiterForm.resetFields()
+     this.updateHandler(row)
+   },
+    ...mapActions('waiters',['fetchData','addHandler','dialogClose','AddHandler','batchDelete','deleteById','updateHandler','handleSelectionChange']),
    
+  
   }
   
 }
