@@ -1,8 +1,8 @@
 <template>
 <div class="app-container">
   <h3>员工管理</h3>
-   <el-button type="primary" size="small" @click="addHandler()">新增</el-button>
-   <el-button type="danger" size="small" @click="batchDelete()">批量删除</el-button>
+   <el-button type="primary" size="small" @click="addHandlerl()">新增</el-button>
+   <el-button type="danger" size="small" @click="toBatchDelete()">批量删除</el-button>
    <el-table
     v-loading="loading"
     :data="list"
@@ -60,7 +60,6 @@
  @close="dialogClose()"
  width="40%"
 >
-
   <el-form  :model="waiter_info" label-width="120px" :rules="rules" ref="waiterForm" >
   <el-form-item label="用户名:" prop="username" > 
     <el-input v-model="waiter_info.username" style="width:70%" ></el-input>
@@ -76,17 +75,26 @@
     <p>手机号: <el-input v-model="waiter_info.telephone" ></el-input>
     <p>身份证号: <el-input v-model="waiter_info.idCard" ></el-input> -->
   <div slot="footer" class="dialog-footer">
-    <el-button @click="dialogClose()">取 消</el-button>
+    <el-button @click="dialogClose('waiterForm')">取 消</el-button>
     <el-button type="primary" @click="submitHandler('waiterForm')">确 定</el-button>
   </div>
-  
 </el-dialog>
-<!-- 分页 -->
-<!-- <pagination
-    :total="total"
-    :page.sync="listQuery.page" 
-    :limit.sync="listQuery.limit"
-    @pagination="getList" /> --> 
+<!-- /分页 -->
+<!-- 确认框 -->
+<el-dialog
+  title="警告"
+  :visible="dialogVisible"
+  width="30%"
+  @close="edialogClose()"
+  >
+  <span>确认删除么?</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="edialogClose(),ewedialogClose()">取 消</el-button>
+    <el-button type="primary" @click="edialogClose(),tobatchDelete()">确 定</el-button>
+  </span>
+</el-dialog>
+<!-- /确认框 -->
+
 </div>
 </template>
 <script>
@@ -107,6 +115,7 @@ export default {
       telephone:[
         {required:true,message:"请输入手机号",trigger:"blur"},
         {type: 'number', message: '必须为数字值',trigger:"change"},
+        // {min:6,max:11,message:"请输入正确的手机号",trigger:"blur"},
         
       ],
       idCard:[
@@ -115,6 +124,7 @@ export default {
         
       ],
     },
+    dialogVisible:false,//确认框隐藏
     }
   },  
   //在仓库中的数据,获取时,必须卸载computed中
@@ -125,27 +135,57 @@ export default {
     this.fetchData()
   },
   methods:{  
-    submitHandler(a){
+    addHandlerl(){
+      if(this.$refs.waiterForm){
+      this.$refs.waiterForm.resetFields()
+      }
+      this.addHandler()
+    },
+    submitHandler(formName){
       //在提交之前执行校验
-      console.log(a)
-      console.log(this.$refs[a])
-      this.$refs[a].validate((valid)=>{
-
+      console.log(formName)
+      console.log(this.$refs[formName])
+      this.$refs[formName].validate((valid)=>{
         console.log(valid)
         if(valid){
           this.AddHandler()
+          // this.$refs.waiterForm.resetFields();
         }else{
           return false
         }
-      })  
+      })      
    },
-   UpdateHandler(row){
-     this.$refs.waiterForm.resetFields()
+  
+   //清除表单验证对的结果
+  UpdateHandler(row){
+    if(this.$refs.waiterForm){
+      this.$refs.waiterForm.resetFields();
+    }
+     
      this.updateHandler(row)
    },
+   //批量删除前弹出警告框
+    toBatchDelete(){
+      this.dialogVisible=true
+   },
+    // 警告框关闭
+    edialogClose(){
+      this.dialogVisible=false
+    },
+    //点击警告框的确认按钮批量删除
+    tobatchDelete(){
+      this.batchDelete()
+    },
+    //点击取消提示取消删除
+    ewedialogClose(){
+      this.$notify({
+                    title:'取消',
+                    message:'批量删除取消',
+                    type:'error',
+                    duration: 2000,//显示两秒
+                })
+    },
     ...mapActions('waiters',['fetchData','addHandler','dialogClose','AddHandler','batchDelete','deleteById','updateHandler','handleSelectionChange']),
-   
-  
   }
   
 }

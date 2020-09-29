@@ -23,7 +23,7 @@ const waiters = {
             state.list = data
         },
         SETwaiter_info(state,data){
-            state.waiter_info = {...data}
+            state.waiter_info = {...data,telephone:Number(data.telephone)}
         }
     },
     actions:{
@@ -108,20 +108,23 @@ const waiters = {
             })
             console.log(val)
             console.log(context.state.multipleSelection)
-        },
+        },//批量删除
         batchDelete(context){
-            post('/waiter/batchDelete',{ids:context.state.multipleSelection.toString()}).then((resp)=>{
-                context.dispatch('fetchData')
-                ElementUI.Notification({
+            if(context.state.multipleSelection.length!==0){
+                post('/waiter/batchDelete',{ids:context.state.multipleSelection.toString()}).then((resp)=>{
+                    ElementUI.Notification({
                     title:'成功',
                     message:'批量删除成功',
                     type:'success',
-                    duration: 2000//显示两秒
+                    duration: 2000,//显示两秒
                 })
+                context.dispatch('fetchData')   
             }).catch((err)=>{
                 console.log(err)
             })
  
+            }
+            
         },
     }
     
