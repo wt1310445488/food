@@ -86,7 +86,7 @@ const waiters = {
                     type: 'success', //成功的样式
                     duration: 2000//显示两秒
                 });
-            }).catch(()=>{
+            }).catch((err)=>{
                 ElementUI.Notification.error({
                     title:'失败',
                     message:'操作失败',
@@ -95,7 +95,6 @@ const waiters = {
             })
         },
         updateHandler(context,row){
-            
             context.state.title="修改员工信息"
             context.state.dialogFormVisible = true;   
             context.commit('SETwaiter_info',row)
