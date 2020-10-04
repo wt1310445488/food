@@ -50,7 +50,7 @@
               <el-button
               size="mini"
               icon="el-icon-share"
-              @click="findCustomerById(scope.row.id)"
+              @click="tocustomerdetails(scope.row)"
               >详情</el-button>
               <!-- <el-button
               size="mini"
@@ -118,6 +118,12 @@ export default {
         this.fetchData()
     },
     methods:{
+      tocustomerdetails(row){
+        this.$router.push({name:'customerdetails',params:{row:row}})
+        // this.$router.push({name:'productdetails',params:{row:row}})
+
+
+      },
         ...mapActions('customer',['fetchData','updateHandler','dialogClose','AddHandler','addHandler','findCustomerById',])
     }
 }

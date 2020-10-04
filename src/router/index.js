@@ -75,6 +75,13 @@ export const constantRoutes = [
         name: 'customer',
         component: () => import('@/views/customer/index'),
         meta: { title: '顾客管理', icon: 'form' }
+      },
+      {
+        path: 'index1',
+        name: 'customerdetails',
+        component: () => import('@/views/customerdetails/index'),
+        meta: { title: '顾客详情', icon: 'form' },
+        hidden:true
       }
     ]
   },
@@ -87,30 +94,51 @@ export const constantRoutes = [
         name: 'product',
         component: () => import('@/views/products/index'),
         meta: { title: '产品管理', icon: 'form' }
-      }
-    ]
-  },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table', 
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'index1',
+        name: 'productdetails',
+        component: () => import('@/views/productdetails/index'),
+        meta: { title: '产品详情', icon: 'form' },
+        hidden: true
+      },
+    ]
+  },
+  { 
+    path: '/category',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'category',
+        component: () => import('@/views/category/index'),
+        meta: { title: '栏目管理', icon: 'form' }
       }
     ]
   },
+  //点击详情页面跳转到详情页面
+  
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/table',
+  //   name: 'Example',
+  //   meta: { title: 'Example', icon: 'el-icon-s-help' },
+  //   children: [
+  //     {
+  //       path: 'table',
+  //       name: 'Table', 
+  //       component: () => import('@/views/table/index'),
+  //       meta: { title: 'Table', icon: 'table' }
+  //     },
+  //     {
+  //       path: 'tree',
+  //       name: 'Tree',
+  //       component: () => import('@/views/tree/index'),
+  //       meta: { title: 'Tree', icon: 'tree' }
+  //     }
+  //   ]
+  // },
 
   // {
   //   path: '/form',
