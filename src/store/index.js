@@ -8,6 +8,7 @@ import waiters from './waiters/index'
 import customer from './customer/index'
 import products from './products/index'
 import category from './category/index'
+import order from './order/index'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     waiters,
     customer,
     products,
-    category
+    category,
+    order
   },
   getters
 })

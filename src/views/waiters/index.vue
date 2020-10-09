@@ -71,9 +71,6 @@
     <el-input v-model="waiter_info.idCard" style="width:70%"></el-input>
   </el-form-item>
   </el-form>
-    <!-- <p>用户名: <el-input v-model="waiter_info.username"></el-input>  
-    <p>手机号: <el-input v-model="waiter_info.telephone" ></el-input>
-    <p>身份证号: <el-input v-model="waiter_info.idCard" ></el-input> -->
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogClose('waiterForm')">取 消</el-button>
     <el-button type="primary" @click="submitHandler('waiterForm')">确 定</el-button>
@@ -126,7 +123,7 @@ export default {
     },
     dialogVisible:false,//确认框隐藏
     }
-  },  
+  },   
   //在仓库中的数据,获取时,必须卸载computed中
   computed:{
     ...mapState('waiters',['list','total','listQuery','dialogFormVisible','waiter_info','multipleSelection','loading','title']),

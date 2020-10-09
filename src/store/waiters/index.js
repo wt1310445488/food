@@ -8,7 +8,7 @@ const waiters = {
     state:{ 
             total: 0,//总数量
             listQuery: {
-              page: 1,//当前页码
+              page: 1,//当前页码 
               limit: 5//一页显示几条
             },
             list:[],

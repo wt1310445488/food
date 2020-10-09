@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard', 
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '饱了么', icon: 'dashboard' }
+      meta: { title: '美滋美味', icon: 'dashboard' }
     }]
   },
   {
@@ -116,7 +116,19 @@ export const constantRoutes = [
       }
     ]
   },
-  //点击详情页面跳转到详情页面
+  //订单管理页面
+  { 
+    path: '/order',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'order',
+        component: () => import('@/views/order/index'),
+        meta: { title: '订单管理', icon: 'form' }
+      }
+    ]
+  },
   
   // {
   //   path: '/example',

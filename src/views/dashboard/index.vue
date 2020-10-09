@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text"> 家政首页 </div>
+    <div class="dashboard-text"> 美滋美味首页 </div>
   </div>
 </template>
 
