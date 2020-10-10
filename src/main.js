@@ -8,13 +8,18 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
 
-import App from './App'
+import App from './App' 
 import store from './store'
 import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-
+//导入时间格式化组件库
+import moment from 'moment'
+//定义时间格式化全局过滤器
+Vue.filter('dateFormat',(dateStr,pattern='YYYY-MM-DD hh:mm:ss')=>{
+  return moment(dateStr).format(pattern)
+})
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
