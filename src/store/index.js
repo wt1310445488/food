@@ -9,6 +9,7 @@ import customer from './customer/index'
 import products from './products/index'
 import category from './category/index'
 import order from './order/index'
+import comment from './comment/index'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ const store = new Vuex.Store({
     customer,
     products,
     category,
-    order
+    order,
+    comment
   },
   getters
 })

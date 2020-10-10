@@ -129,6 +129,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/comment',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'comment',
+        component: () => import('@/views/comment/index'),
+        meta: { title: '评论管理', icon: 'form' }
+      }
+    ]
+  },
   
   // {
   //   path: '/example',

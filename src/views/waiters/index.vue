@@ -18,8 +18,8 @@
     </el-table-column>
     <el-table-column
     align="center"
-      prop="username"
-      label="用户名"
+      prop="username" 
+      label="用户名" 
       width="180">
     </el-table-column>
     <el-table-column
