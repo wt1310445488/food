@@ -9,7 +9,7 @@ const order = {
         orderlist:[],//分页查询的数据 
         total:0,//分页查询的总数
         listQuery:{
-            page:1,//当前页码
+            page:1,//当前页码  
             limit:5,//一页显示几条
         },
         waiters:{},//员工信息

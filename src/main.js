@@ -14,12 +14,14 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-//导入时间格式化组件库
+//导入时间格式化组件库 
 import moment from 'moment'
 //定义时间格式化全局过滤器
 Vue.filter('dateFormat',(dateStr,pattern='YYYY-MM-DD hh:mm:ss')=>{
   return moment(dateStr).format(pattern)
 })
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

@@ -54,6 +54,19 @@ export const constantRoutes = [
       meta: { title: '美滋美味', icon: 'dashboard' }
     }]
   },
+   //商品总览
+   { 
+    path: '/all',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'all',
+        component: () => import('@/views/all/index'),
+        meta: { title: '总览', icon: 'form' }
+      }
+    ]
+  },
   {
     path: '/waiter',
     component: Layout,
@@ -89,7 +102,7 @@ export const constantRoutes = [
     path: '/product',
     component: Layout,
     children: [
-      {
+      { 
         path: 'index',
         name: 'product',
         component: () => import('@/views/products/index'),

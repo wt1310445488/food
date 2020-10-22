@@ -136,7 +136,7 @@ export default {
             this.batchDelete()
         },
         //查询
-        handlerquery(){
+        handlerquery(){ 
             this.fetchData()
         },
         //跳转详情
