@@ -129,19 +129,30 @@ function getRich() {
     return result
 }
 let data = [{
-    'name': '美食',
+    'name': '水果',
     'value': 25
 }, {
-    'name': '甜点饮品',
+    'name': '饼干曲奇',
     'value': 20
 }, {
-    'name': '超市便利',
+    'name': '坚果炒货',
+    'value': 12
+},{
+    'name': '牛奶饮品',
     'value': 18
 }, {
-    'name': '水果',
-    'value': 15
-}, {
-    'name': '茶匠',
+    'name': '面包蛋糕',
+    'value': 13
+},{
+    'name': '薯片膨化',
+    'value': 10
+},
+{
+    'name': '糖果巧克力',
+    'value':5
+},
+{
+    'name': '肉干鱼干',
     'value': 13
 }].sort((a, b) => {
     return b.value - a.value
