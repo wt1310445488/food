@@ -11,7 +11,7 @@
                     v-model="selectlist.name"  
                     @change="changeselect"
                     clearable 
-                    size="small">
+                    size="small"> 
                         <el-option
                          v-for="item in selectlist"
                         :key="item.id"
