@@ -126,6 +126,13 @@ export const constantRoutes = [
         name: 'category',
         component: () => import('@/views/category/index'),
         meta: { title: '栏目管理', icon: 'form' }
+      },
+      {
+        path: 'index1',
+        name: 'categorydetails',
+        component: () => import('@/views/categorydetails/index'),
+        meta: { title: '栏目详情', icon: 'form' },
+        hidden:true
       }
     ]
   },

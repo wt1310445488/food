@@ -39,7 +39,7 @@
                 <template v-slot = "scope">
                 <el-button type="danger" size="mini" @click="deleteById(scope.row.id)">删除</el-button>
                 <el-button type="primary" size= "mini" @click="UpdateHandler(scope.row)">编辑</el-button>
-                <el-button size="mini">详情</el-button>
+                <el-button size="mini" @click="tocategorydetails(scope.row)">详情</el-button>
                 </template>
             </el-table-column>
             
@@ -104,6 +104,9 @@ export default {
         ...mapState('category',['categoryList','total','listQuery','categorylist','multipleSelection','categorylist','selectlist'])
     },
     methods:{
+        tocategorydetails(row){
+            this.$router.push({name:'categorydetails',params:{row:row}})
+        },
         toaddHandler(){
             this.title="新增栏目"
             this.dialogFormVisible=true,
